@@ -1,0 +1,4 @@
+Microcontroller code and code to interface with it from a PC to perform
+analog data acquisition using the built-in A/D converter and serial port.
+
+Microcontroller code is written for an Arduino Mega.
