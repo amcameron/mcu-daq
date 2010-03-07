@@ -14,8 +14,19 @@ void setup() {
 void loop() {
 	if (Serial.available()) {
 		incomingByte = char(Serial.read());
-		if (BEGIN_CHAR == incomingByte) enabled = true;
-		else if (END_CHAR == incomingByte) enabled = false;
+		switch(incomingByte) {
+			BEGIN_CHAR:
+				enabled = true;
+				break;
+
+			END_CHAR:
+				enabled = false;
+				break;
+
+			default:
+				// do nothing
+				break;
+		}
 	}
 
 	if (enabled)
