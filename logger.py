@@ -1,18 +1,24 @@
 # note: requires pySerial (http://pyserial.sourceforge.net/)
 import serial
 from time import time
+BEGIN_CHAR = 'B'
+END_CHAR = 'E'
 
 # Linux:
-#ser = serial.Serial('/dev/tty.usbserial', 9600, timeout = 0)
+#ser = serial.Serial('/dev/tty.usbserial', 9600, timeout = 0.1)
 # Windows:
-ser = serial.Serial('COM3', 9600, timeout = 0)
+ser = serial.Serial('COM3', 9600, timeout = 0.1)
+logfile = open("log.txt", 'w')
 
 now = time()
-ser.write('B')
-while time() - now < 5.0:
+sampleLength = 5.0
+ser.write(BEGIN_CHAR)
+while time() - now < sampleLength:
 	if ser.inWaiting():
-		print ser.readline()
+		logfile.writelines(ser.readline())
 
-ser.write('E')
+ser.write(END_CHAR)
+while ser.inWaiting():
+	logfile.writelines(ser.readline())
 
-#ta-da!  maybe make it write to a file, next.
+logfile.close()
