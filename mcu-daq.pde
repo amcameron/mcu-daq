@@ -19,5 +19,5 @@ void loop() {
 	}
 
 	if (enabled)
-		Serial.println(analogRead(analogPin);
+		Serial.println(analogRead(analogPin));
 }
