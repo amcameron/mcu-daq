@@ -15,11 +15,11 @@ void loop() {
 	if (Serial.available()) {
 		incomingByte = char(Serial.read());
 		switch(incomingByte) {
-			BEGIN_CHAR:
+			case BEGIN_CHAR:
 				enabled = true;
 				break;
 
-			END_CHAR:
+			case END_CHAR:
 				enabled = false;
 				break;
 
